@@ -1,14 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "MicroBlog", '#', id: "logo" %>
-    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+    <%= link_to "MicroBlog", root_path, id: "logo" %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Contact", contact_path %></li>
-        <!-- <li><%= link_to "Log in", '#' %></li> -->
+        <li><%= link_to "Log in", signup_path %></li>
       </ul>
     </nav>
   </div>
