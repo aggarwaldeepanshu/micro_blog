@@ -1,8 +1,21 @@
 <% provide(:title, "Signup") %>
 
-<!DOCTYPE html>
-<html>
-	<body>
-		<h1>Welcome to Signup Page</h1>
-	</body>
-</html>
+<h1>Signup Page</h1>
+
+<%= form_with(model: @user, local: true) do |f| %>
+	<%= render 'shared/error_messages' %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.label :email %>
+	<%= f.email_field :email %>
+
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+
+	<%= f.label :password_confirmation, "Confirmation" %>
+	<%= f.password_field :password_confirmation %>
+
+	<%= f.submit "Create my account", class: "btn btn-primary" %>
+<% end %>
