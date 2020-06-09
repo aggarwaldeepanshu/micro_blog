@@ -1,0 +1,16 @@
+<% provide(:title, "Login") %>
+
+<h1>Login Page</h1>
+
+<%= form_with(action: login_path, scope: :session, local: true) do |f| %>
+
+	<%= f.label :email %>
+	<%= f.email_field :email %>
+
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+
+	<%= f.submit "Login", class: "btn btn-primary" %>
+<% end %>
+
+<p>New user? <%= link_to "Sign up now!", signup_path %></p>
