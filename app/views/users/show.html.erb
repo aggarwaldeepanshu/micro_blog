@@ -1,3 +1,5 @@
 <h2>Name: </h2> <%= @user.name %>
 
 <h3>Email: </h3> <%= @user.email %>
+
+<%= link_to "microposts", user_microposts_path(@user) %>

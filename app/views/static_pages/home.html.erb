@@ -1,8 +1,14 @@
 <% provide(:title, "Home") %>
 
-<!DOCTYPE html>
-<html>
-	<body>
-		<h1>Welcome to Home Page</h1>
-	</body>
-</html>
+<h1>Welcome to Home Page</h1>
+
+<% if logged_in? %>
+	<p>Create a new Post</p>
+	<%= form_with(model: @micropost, local: true) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+
+		<%= f.text_area :content, placeholder: "add a post" %>
+
+		<%= f.submit "Post" %>
+	<% end %>
+<% end %>

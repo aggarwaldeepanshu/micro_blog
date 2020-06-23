@@ -1,0 +1,13 @@
+<% provide(:title, "All microposts") %>
+<h2><%= @user.name %></h2>
+<h2><%= @user.email %></h2>
+<h2>All microposts are listed below</h2>
+<ol>
+	<% @microposts.each do |micropost| %>
+		<li><%= link_to micropost.content %>
+			<%= link_to "delete", micropost, method: :delete, 
+										data: { confirm: "Are you sure?" } %>
+			Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+		</li>
+	<% end %>
+</ol>
