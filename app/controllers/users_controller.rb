@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :update_hobbies, :destroy]
+  before_action :correct_user, only: [:edit, :update, :update_hobbies]
 
   def index
     @users = User.search(params[:search])
   end
 
   def show
-  	@user = User.includes(:microposts).find(params[:id])
+  	@user = User.includes(:microposts, :hobbies).find(params[:id])
+    @hobby = current_user.hobbies.build if logged_in?
   end
 
   def new
@@ -38,6 +38,17 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def update_hobbies
+    if hobby_id.present?
+      hobby = Hobby.find_by(id: hobby_id)
+      @user.hobbies << hobby unless @user.hobbies.exists?(hobby[:id])
+      flash[:success] = "Hobby added successfully!"
+      redirect_to(@user)
+    end
+  end
+
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted successfully"
@@ -54,5 +65,9 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to root_path unless current_user?(@user)
+  end
+
+  def hobby_id
+    params[:user][:hobby_ids]
   end
 end

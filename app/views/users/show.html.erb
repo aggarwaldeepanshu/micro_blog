@@ -2,4 +2,25 @@
 
 <h3>Email: </h3> <%= @user.email %>
 
+<h3>Hobbies are:</h3>
+<ol>
+	<% @user.hobbies.each do |hobby| %>
+		<li><%= hobby[:name] %></li>
+	<% end %>
+</ol>
+
+<h3>Add another Hobby</h3>
+<%= form_for @user, url: { action: 'update_hobbies' }, method: :patch do |f| %>
+	<%= f.collection_select :hobby_ids, Hobby.all, :id, :name %>
+	<%= f.submit%>
+<% end %>
+
+<p>Hobby not listed?</p>
+<p>Create One!</p>
+<%= form_with(model: @hobby, local: true) do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit "Create" %>
+<% end %>
+
+
 <%= link_to "microposts", user_microposts_path(@user) %>
