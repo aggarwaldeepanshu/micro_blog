@@ -5,7 +5,7 @@ class User < ApplicationRecord
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 	with_options presence: true do |user|
-		user.validates :name, length: { maximum: 20 }
+		user.validates :name, length: { maximum: 100 }
 		user.validates :email, length: { maximum: 50 },
 						  format: { with: VALID_EMAIL_REGEX },
 						  uniqueness: true, confirmation: true

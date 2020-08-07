@@ -3,7 +3,6 @@ class HobbiesController < ApplicationController
 
 	def create
 		hobby = Hobby.new(hobby_params)
-		debugger
 		if hobby.save!
 			current_user.hobbies << hobby
 			flash[:success] = "Hobby created successfully!"

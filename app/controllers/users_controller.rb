@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :update_hobbies]
 
   def index
-    @users = User.search(params[:search])
+    # @users = User.search(params[:search])
+    @users = User.search(params[:search]).order("name").page(params[:page])
   end
 
   def show

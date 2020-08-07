@@ -1,5 +1,7 @@
 <% provide(:title, "All users") %>
 
+<%= will_paginate @users %>
+
 <%= form_tag users_path, method: :get do %>
 	<p>
 		<%= text_field_tag :search, params[:search] %>
